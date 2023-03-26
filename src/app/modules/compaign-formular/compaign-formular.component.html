@@ -1,0 +1,38 @@
+<div class="card w-60" [formGroup]="formCompaign">
+    <div class="brand">
+        <span style="margin-right: 2rem;font-weight: bold;">Brand<span class="text-danger">*</span></span>
+        <mat-select class="selector" formControlName="brand">
+            <mat-option *ngFor="let brand of listBrands" [value]="brand.brandId">{{brand.name}}</mat-option>
+        </mat-select>
+    </div>
+    <div class="form-body">
+        <div class="compaign-name">
+            <span style="font-weight: bold;">
+            Campaign name <span class="text-danger">*</span>
+            </span>
+            <input formControlName="campaignName" />
+        </div>
+        <div class="media-block">
+            <span style="font-weight: bold;">Media<span class="text-danger">*</span></span>
+            <div class="media-list">
+                <ng-container *ngFor="let media of listMedias;let i=index">
+                    <div class="media-list-item">
+                        <mat-checkbox class="margin-item" [checked]="verifyMediaExistance(media.mediaId)"></mat-checkbox>
+                        <span class="margin-item">{{media.value}}</span>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="media-block">
+            <span style="font-weight: bold;">
+            Deadline for decision<span class="text-danger">*</span>
+            </span>
+            <div class="date-picker">
+                <input [matDatepicker]="datePicker" disabled>
+                <mat-datepicker-toggle [for]="datePicker" class="toggle-date-picker"></mat-datepicker-toggle>
+                <mat-datepicker #datePicker disabled="false"></mat-datepicker>
+            </div>
+        </div>
+    </div>
+
+</div>
